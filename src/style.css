@@ -1,0 +1,76 @@
+/* 큰 화면 (태블릿 이상) */
+@media (min-width: 768px) {
+    .box {
+        font-size: 1.3rem;
+    }
+}
+
+/* 중간 화면 (일반 스마트폰) */
+@media (max-width: 767px) {
+    .box {
+        font-size: 1.1rem;
+    }
+}
+
+/* 작은 화면 (iPhone SE, 작은 안드로이드) */
+@media (max-width: 480px) {
+    .box {
+        font-size: 1rem;
+    }
+}
+
+body {
+    overflow: hidden;
+}
+
+#title {
+    position: absolute;
+    font-size: 90px;
+    top: 150px;
+    left: 100px;
+    font-family: "Gaegu", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+
+}
+
+.titleMotion {
+    animation: titleMotion 1s infinite ease-in-out;
+}
+
+@keyframes titleMotion {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.97);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+#cutleryimg {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 50px;
+    top: 50px;
+}
+
+#button {
+    width: 80px;
+    height: 90px;
+    border-radius: 10%;
+    background-color: aqua;
+    position: absolute;
+    bottom: 70px;
+    right: 30px;
+    font-family: "Gaegu", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+    border: lightgray solid 2px;
+}

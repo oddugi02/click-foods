@@ -1,0 +1,166 @@
+/* 큰 화면 (태블릿 이상) */
+@media (min-width: 768px) {
+    .box {
+        font-size: 1.3rem;
+    }
+}
+
+/* 중간 화면 (일반 스마트폰) */
+@media (max-width: 767px) {
+    .box {
+        font-size: 1.1rem;
+    }
+}
+
+/* 작은 화면 (iPhone SE, 작은 안드로이드) */
+@media (max-width: 480px) {
+    .box {
+        font-size: 1rem;
+    }
+}
+
+body {
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Gaegu', cursive;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+}
+
+/* 3×3 그리드 컨테이너 */
+#foodGrid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 600px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+/* 3×3 그리드 컨테이너 */
+#foodGrid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 600px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+/* 각 사각형 박스 */
+.food-box {
+    position: relative;
+    border: 3px solid aquamarine;
+    border-radius: 10%;
+    background: white;
+    overflow: hidden;
+
+    /* 글자 가운데 정렬 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Gaegu', sans-serif;
+    font-size: 1.6rem;
+    color: #333;
+}
+
+/* 정사각형 비율 유지 */
+.food-box::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+
+.food-box span {
+    position: absolute;
+    font-family: 'Gaegu', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* 좌우로 기울어지는 애니메이션 */
+@keyframes tiltLeft {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(-6deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes tiltRight {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(6deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* 애니메이션 적용될 클래스 */
+.tilt-left {
+    animation: tiltLeft 1.6s ease-in-out infinite;
+}
+
+.tilt-right {
+    animation: tiltRight 1.6s ease-in-out infinite;
+}
+
+#yumText {
+    position: fixed;
+    bottom: 30px;
+    left: 90%;
+    transform: translateX(-50%) scale(0.6);
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: gray;
+    opacity: 0;
+    transition: opacity 0.05s ease, transform 0.05s ease;
+    pointer-events: none;
+    font-family: 'Gaegu', sans-serif;
+}
+
+#yumText.show {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+
+}
+
+#info {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+}

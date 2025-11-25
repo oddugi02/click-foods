@@ -1,0 +1,310 @@
+/* 큰 화면 (태블릿 이상) */
+@media (min-width: 768px) {
+    .box {
+        font-size: 1.3rem;
+    }
+}
+
+/* 중간 화면 (일반 스마트폰) */
+@media (max-width: 1023px) and (min-width: 768px) {
+    .sub-cloud-area {
+        right: 20px;
+        top: 20px;
+        width: 150px;
+        align-items: flex-end;
+        position: fixed;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .cloud,
+    .popup-content {
+        font-size: 1.1rem;
+    }
+
+    .sub-cloud-area {
+        right: 10px;
+        /* 작은 화면에서는 조금 안쪽으로 */
+        top: 10px;
+        width: 130px;
+        /* 하위 구름 영역 폭 조정 */
+        align-items: flex-end;
+        position: fixed;
+    }
+
+    .sub-cloud {
+        font-size: 0.8rem;
+        padding: 8px 12px;
+        margin: 0 0 10px 0;
+        /* 좌우 마진 제거, 위쪽만 간격 */
+        align-self: flex-end;
+    }
+
+    .popup {
+        width: 90vw;
+        /* 팝업 화면 비율 맞춤 */
+        height: 60vh;
+    }
+}
+
+/* 작은 화면 (iPhone SE, 작은 안드로이드) */
+@media (max-width: 480px) {
+    .box {
+        font-size: 1rem;
+    }
+
+    .sub-cloud-area {
+        right: 5px;
+        top: 5px;
+        width: 110px;
+        align-items: flex-end;
+        position: fixed;
+    }
+
+    .sub-cloud {
+        font-size: 0.75rem;
+        padding: 6px 10px;
+        margin: 0 0 10px 0;
+        /* 좌우 마진 제거, 위쪽만 간격 */
+        align-self: flex-end;
+    }
+
+    .popup {
+        width: 95vw;
+        height: 55vh;
+    }
+}
+
+body {
+    overflow: hidden;
+    font-family: 'Gaegu', cursive;
+    background-color: #f0f8ff;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; <- 이걸 제거하고 */
+    align-items: flex-start;
+    /* 왼쪽 정렬 */
+    padding: 20px;
+}
+
+.cloud-container {
+    display: flex;
+    flex-direction: column;
+    /* 세로 배열 */
+    gap: 30px;
+    align-items: flex-start;
+    position: relative;
+}
+
+@media (min-width: 1024px) {
+    .cloud-container {
+        gap: 35px;
+        top: 20px;
+        left: 20px;
+    }
+}
+
+/* 중간 화면 (스마트폰) */
+@media (max-width: 1023px) and (min-width: 768px) {
+    .cloud-container {
+        gap: 25px;
+        top: 15px;
+        left: 15px;
+    }
+}
+
+/* 작은 화면 (767px 이하) */
+@media (max-width: 767px) {
+    .cloud-container {
+        gap: 20px;
+        top: 10px;
+        left: 10px;
+    }
+}
+
+/* 아주 작은 화면 (480px 이하) */
+@media (max-width: 480px) {
+    .cloud-container {
+        gap: 15px;
+        top: 5px;
+        left: 5px;
+    }
+}
+
+.cloud {
+    background-color: #a0e7e5;
+    border-radius: 50%;
+    padding: 20px 25px;
+    cursor: pointer;
+    text-align: center;
+    min-width: 120px;
+    min-height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.cloud:hover {
+    transform: scale(1.1);
+}
+
+.main-clouds {
+    display: flex;
+    flex-direction: column;
+    /* 세로 배열로 바꿔줌 */
+    gap: 20px;
+    /* 구름 간 간격 */
+}
+
+.sub-cloud-area {
+    display: flex;
+    flex-direction: column;
+    /* 세로 정렬 */
+    gap: 10px;
+    position: absolute;
+    /* 화면 우측 고정 */
+    top: 20px;
+    right: 0px;
+    max-height: 90vh;
+    overflow-y: auto;
+    /* 너무 많으면 스크롤 가능 */
+    width: 150px;
+    /* 기본 폭 */
+    align-items: flex-end;
+    position: fixed;
+
+}
+
+.sub-cloud {
+    background-color: #f9f871;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin: 0 0 10px 0;
+    /* 좌우 마진 제거, 위쪽만 간격 */
+    align-self: flex-end;
+}
+
+/* 팝업 창 스타일 */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border: 2px solid #333;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #202405;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+}
+
+.popup-buttons button {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.popup-content {
+    padding: 15px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.hidden {
+    display: none;
+}
+
+.cloud,
+.sub-cloud {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #cde;
+    /* 구름 색 */
+    border-radius: 50px;
+    /* 타원형 */
+    cursor: pointer;
+    margin: 10px;
+    font-family: 'Gaegu', cursive;
+    transition: transform 0.3s;
+}
+
+/* 좌우로 기울어지는 애니메이션 */
+
+@keyframes tiltLeft {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(-6deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes tiltRight {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(6deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.tiltLeft {
+    animation: tiltLeft 3s infinite;
+}
+
+.tiltRight {
+    animation: tiltRight 3s infinite;
+}
+
+#gukimg {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    z-index: -10;
+}
+
+#bob {
+    position: absolute;
+    right: 10px;
+    bottom: 100px;
+    width: 200px;
+    height: 200px;
+
+}
+
+#back {
+    font-family: "Gaegu", sans-serif;
+    font-size: 21.5px;
+    font-weight: 400;
+    font-style: normal;
+    position: absolute;
+    right: 20px;
+    bottom: 50px;
+}
