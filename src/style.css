@@ -1,76 +1,162 @@
-/* 큰 화면 (태블릿 이상) */
-@media (min-width: 768px) {
-    .box {
-        font-size: 1.3rem;
-    }
-}
-
-/* 중간 화면 (일반 스마트폰) */
-@media (max-width: 767px) {
-    .box {
-        font-size: 1.1rem;
-    }
-}
-
-/* 작은 화면 (iPhone SE, 작은 안드로이드) */
-@media (max-width: 480px) {
-    .box {
-        font-size: 1rem;
-    }
-}
-
 body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+.game-container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+}
+
+.info-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+/* 퍼센티지 바 스타일: 컴퓨터 바를 오른쪽에서 채우기 위한 설정 */
+.percentage-bar-container {
+    width: 100%;
+    height: 30px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    margin-bottom: 20px;
     overflow: hidden;
+    position: relative;
+    /* 자식 요소(바)의 절대 위치 기준점 */
 }
 
-#title {
+.percentage-bar {
+    height: 100%;
+    transition: width 0.3s ease-out;
     position: absolute;
-    font-size: 90px;
-    top: 150px;
-    left: 100px;
-    font-family: "Gaegu", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-
+    /* 바를 컨테이너 내에서 자유롭게 배치 */
+    top: 0;
 }
 
-.titleMotion {
-    animation: titleMotion 1s infinite ease-in-out;
+.player-bar {
+    background-color: #4a90e2;
+    /* 파란색 */
+    left: 0;
+    /* 왼쪽에서 시작 */
 }
 
-@keyframes titleMotion {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(0.97);
-    }
-
-    100% {
-        transform: scale(1);
-    }
+.computer-bar {
+    background-color: #d0021b;
+    /* 빨간색 */
+    right: 0;
+    /* 오른쪽에서 시작하여 왼쪽으로 채워짐 */
 }
 
-#cutleryimg {
+.percentage-text {
     position: absolute;
-    top: 50px;
-    left: 50px;
-    width: 50px;
-    top: 50px;
+    /* 텍스트를 바 위에 겹치기 위해 */
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    font-size: 0.9em;
+    padding: 0 5px;
+    z-index: 2;
+    /* 텍스트가 바보다 위에 오도록 설정 */
 }
 
-#button {
-    width: 80px;
-    height: 90px;
-    border-radius: 10%;
-    background-color: aqua;
-    position: absolute;
-    bottom: 70px;
-    right: 30px;
-    font-family: "Gaegu", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 30px;
-    border: lightgray solid 2px;
+.player-text {
+    left: 5px;
+}
+
+.computer-text {
+    right: 5px;
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-gap: 3px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+    padding: 2px;
+}
+
+.tile {
+    aspect-ratio: 1 / 1;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.player-tile {
+    background-color: #4a90e2;
+}
+
+.computer-tile {
+    background-color: #d0021b;
+}
+
+.control-buttons button {
+    padding: 10px 15px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin: 0 5px;
+    transition: background-color 0.2s;
+}
+
+#action-button {
+    background-color: #5cb85c;
+    /* 초록색 */
+    color: white;
+}
+
+#reset-button {
+    background-color: #f0ad4e;
+    /* 주황색 */
+    color: white;
+}
+
+#reset-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* 모달 스타일 (게임 종료 시 결과 표시) - 생략 없음 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 10px;
 }

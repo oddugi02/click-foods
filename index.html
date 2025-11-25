@@ -1,23 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자리차지 게임</title>
     <link rel="stylesheet" href="./src/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&display=swap" rel="stylesheet">
-    <title>Title</title>
 </head>
 
 <body>
-    <div id="title">기억속<br>음식들</div>
-    <div id="button">냠</div>
-    <img src="./src/background.jpg" id="background">
-    <div id="cutlery"><img src="./src/cutlery.jpg" id="cutleryimg"></div>
-    <script type="module" src="./src/main.js"></script>
+    <div class="game-container">
+        <h1>자리차지 게임</h1>
+        <div class="info-bar">
+            <p>남은 시간: <span id="timer">3:00</span></p>
+            <p>나 (파랑): <span id="player-score">0</span> | 컴퓨터 (빨강): <span id="computer-score">0</span></p>
+        </div>
 
+        <div class="percentage-bar-container">
+            <div id="player-percentage-bar" class="percentage-bar player-bar"></div>
+            <div id="computer-percentage-bar" class="percentage-bar computer-bar"></div>
+            <span id="player-percentage" class="percentage-text player-text">0%</span>
+            <span id="computer-percentage" class="percentage-text computer-text">0%</span>
+        </div>
+
+        <div id="grid" class="grid-container">
+        </div>
+
+        <div class="control-buttons">
+            <button id="action-button">게임 시작</button>
+            <button id="reset-button" disabled>다시 시작</button>
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2 id="modal-message"></h2>
+            <p id="modal-scores"></p>
+            <button id="modal-restart-button">다시 시작</button>
+        </div>
+    </div>
+
+    <script src="./src/main.js"></script>
 </body>
 
 </html>
