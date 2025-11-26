@@ -1,5 +1,5 @@
 // --- 변수 설정 --- 
-ClickBattle.init("ZERO");
+
 const GRID_SIZE = 10;
 const TOTAL_TILES = GRID_SIZE * GRID_SIZE;
 const GAME_DURATION = 3 * 60; // 3분 (180초)
@@ -151,9 +151,6 @@ function handleTileClick(tile, byWhom) {
     const isComputerTile = tile.classList.contains('computer-tile');
 
     if (isPlayer) {
-        // 👇 [ClickBattle.recordClick();] 삽입: 사용자(파랑) 클릭 시점
-
-        ClickBattle.recordClick();
 
 
         if (isComputerTile) {
