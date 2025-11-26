@@ -104,6 +104,11 @@ function resetGame() {
 
     // 버튼 상태 초기화
     updateButtonState('initial');
+
+    // 👇 [ClickBattle.init("ZERO");] 삽입: 게임 초기화 시점
+    if (typeof ClickBattle !== 'undefined' && ClickBattle.init) {
+        ClickBattle.init("ZERO");
+    }
 }
 
 // --- 게임 로직 ---
@@ -131,17 +136,11 @@ function updatePercentageBar() {
     const playerPct = (playerTiles / TOTAL_TILES) * 100;
     const computerPct = (computerTiles / TOTAL_TILES) * 100;
 
-    // CSS에서 position: absolute와 right: 0을 사용하여 오른쪽에서 채워지게 했습니다.
     playerPercentageBar.style.width = `${playerPct}%`;
     computerPercentageBar.style.width = `${computerPct}%`;
 
     playerPercentageText.textContent = `${Math.round(playerPct)}%`;
     computerPercentageText.textContent = `${Math.round(computerPct)}%`;
-
-    // 타일이 차지된 총 면적이 100% 미만일 경우, 바는 중앙에서 만나지 않고 여백이 생깁니다.
-    // 두 바의 총 너비를 100%로 설정하는 것이 아니라, 각 바의 독립적인 비율을 설정했습니다.
-    // '만약 빈공간에'라는 요청에 맞게, 플레이어 바와 컴퓨터 바는 겹치지 않고
-    // 각자의 영역(왼쪽, 오른쪽)에서 성장하며 중앙의 빈 공간을 남겨둡니다.
 }
 
 // 타일 클릭 (플레이어 또는 컴퓨터)
@@ -153,6 +152,11 @@ function handleTileClick(tile, byWhom) {
     const isComputerTile = tile.classList.contains('computer-tile');
 
     if (isPlayer) {
+        // 👇 [ClickBattle.recordClick();] 삽입: 사용자(파랑) 클릭 시점
+        if (typeof ClickBattle !== 'undefined' && ClickBattle.recordClick) {
+            ClickBattle.recordClick();
+        }
+
         if (isComputerTile) {
             tile.classList.remove('computer-tile');
             computerTiles--;
