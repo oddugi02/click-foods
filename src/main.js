@@ -1,4 +1,5 @@
-// --- 변수 설정 ---
+// --- 변수 설정 --- 
+ClickBattle.init("ZERO");
 const GRID_SIZE = 10;
 const TOTAL_TILES = GRID_SIZE * GRID_SIZE;
 const GAME_DURATION = 3 * 60; // 3분 (180초)
@@ -105,10 +106,8 @@ function resetGame() {
     // 버튼 상태 초기화
     updateButtonState('initial');
 
-    // 👇 [ClickBattle.init("ZERO");] 삽입: 게임 초기화 시점
-    if (typeof ClickBattle !== 'undefined' && ClickBattle.init) {
-        ClickBattle.init("ZERO");
-    }
+
+
 }
 
 // --- 게임 로직 ---
@@ -153,9 +152,9 @@ function handleTileClick(tile, byWhom) {
 
     if (isPlayer) {
         // 👇 [ClickBattle.recordClick();] 삽입: 사용자(파랑) 클릭 시점
-        if (typeof ClickBattle !== 'undefined' && ClickBattle.recordClick) {
-            ClickBattle.recordClick();
-        }
+
+        ClickBattle.recordClick();
+
 
         if (isComputerTile) {
             tile.classList.remove('computer-tile');
