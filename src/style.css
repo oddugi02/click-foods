@@ -96,58 +96,69 @@ body {
 
 /* 🚩 NEW: 단계별 플레이어 타일 색상 (10개 스테이지) */
 .player-tile-stage1 {
-    background-color: #4a90e2;
+    background-color: #4a90e2 !important;
+    /* <--- !important 추가 */
 }
 
 /* 파랑 */
 .player-tile-stage2 {
-    background-color: #904ae2;
+    background-color: #904ae2 !important;
+    /* <--- !important 추가 */
 }
 
 /* 보라 */
 .player-tile-stage3 {
-    background-color: #4ae290;
+    background-color: #4ae290 !important;
+    /* <--- !important 추가 */
 }
 
 /* 청록 */
 .player-tile-stage4 {
-    background-color: #e24a90;
+    background-color: #e24a90 !important;
+    /* <--- !important 추가 */
 }
 
 /* 핫핑크 */
 .player-tile-stage5 {
-    background-color: #e2904a;
+    background-color: #e2904a !important;
+    /* <--- !important 추가 */
 }
 
 /* 주황 */
 .player-tile-stage6 {
-    background-color: #4a66e2;
+    background-color: #4a66e2 !important;
+    /* <--- !important 추가 */
 }
 
 /* 인디고 */
 .player-tile-stage7 {
-    background-color: #a0e24a;
+    background-color: #a0e24a !important;
+    /* <--- !important 추가 */
 }
 
 /* 라임 */
 .player-tile-stage8 {
-    background-color: #e24a4a;
+    background-color: #e24a4a !important;
+    /* <--- !important 추가 */
 }
 
 /* 밝은 빨강 */
 .player-tile-stage9 {
-    background-color: #834ae2;
+    background-color: #834ae2 !important;
+    /* <--- !important 추가 */
 }
 
 /* 진한 보라 */
 .player-tile-stage10 {
-    background-color: #4ae2e2;
+    background-color: #4ae2e2 !important;
+    /* <--- !important 추가 */
 }
 
 /* 하늘색 */
 
 .computer-tile {
-    background-color: #d0021b;
+    background-color: #d0021b !important;
+    /* <--- !important 추가 */
     /* 컴퓨터 타일은 고정 빨강 */
 }
 
@@ -242,4 +253,85 @@ body {
     100% {
         background-position: 100% 50%;
     }
+}
+
+/* ... 기존 스타일 유지 ... */
+
+/* NEW: info-bar 레이아웃 조정 (스테이지 표시 추가 고려) */
+.info-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* 추가 */
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+/* NEW: 스테이지 표시 스타일 (선택 사항) */
+#stage-display {
+    color: #4a90e2;
+    /* 파란색 계열 */
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.grid-container {
+    display: grid;
+    /* grid-template-columns는 JS에서 동적으로 설정됩니다. */
+    grid-gap: 3px;
+    /* 타일이 잘 보이도록 간격 유지 */
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+    padding: 2px;
+}
+
+.tile {
+    aspect-ratio: 1 / 1;
+    background-color: #eee;
+    border: 1px solid #777;
+    /* NEW: 네모칸 경계선 강화 */
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* ... 기존 단계별 플레이어 타일 색상 유지 ... */
+
+/* NEW: 모달 버튼 스타일 조정 */
+#modal-stage-retry-button,
+#modal-next-stage-button {
+    padding: 10px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    /* 간격 추가 */
+    transition: background-color 0.2s;
+    color: white;
+}
+
+#modal-stage-retry-button {
+    background-color: #f0ad4e;
+    /* 주황색 (다시 시작/재도전) */
+}
+
+#modal-next-stage-button {
+    background-color: #5cb85c;
+    /* 초록색 (다음 단계) */
+}
+
+#modal-restart-button {
+    /* 기존 스타일 활용 또는 아래와 같이 조정 */
+    padding: 10px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    background-color: #4a90e2;
+    /* 파란색 (최종 다시 시작) */
+    color: white;
 }
