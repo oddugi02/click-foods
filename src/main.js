@@ -391,7 +391,7 @@ function endStage(isFinalGame) {
     }
 
     modalMessage.textContent = message;
-    modalScores.innerHTML = `점수:<br> 나 (파랑): **${playerTiles}** | 컴퓨터 (빨강): **${computerTiles}**`;
+    modalScores.innerHTML = `점수:<br> 나: **${playerTiles}** | 컴퓨터: **${computerTiles}**`;
     modal.style.display = 'block';
 
     // 모달 버튼 제어
