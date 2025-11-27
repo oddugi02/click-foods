@@ -343,7 +343,7 @@ function setComputerSpeed() {
 
     // 🚩 고정 딜레이 설정 (기존 로직의 초기 속도에 가까운 값으로 설정)
     // 예시: 500ms (0.5초)마다 클릭 (원하는 속도에 따라 이 값을 조절할 수 있습니다.)
-    const FIXED_DELAY = 420
+    const FIXED_DELAY = 430
         ;
 
     computerIntervalId = setInterval(computerTurn, FIXED_DELAY);
