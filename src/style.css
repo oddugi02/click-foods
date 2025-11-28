@@ -15,33 +15,32 @@ body {
     overflow: hidden;
 }
 
-/* 🚩 게임 실행 시 body에 동적으로 추가할 클래스 (JS에서 제어) */
+/* 🚩 .disco-mode 클래스 수정: 애니메이션 이름 변경 및 filter 제거 */
 .disco-mode {
     background: linear-gradient(135deg, #ff0077, #00ffff, #ffcc00, #00ff00);
     background-size: 400% 400%;
-    animation: discoFlash 0.5s infinite alternate;
-    /* 0.5초 간격으로 빠르게 번쩍임 */
+    animation: gradientShift 15s ease infinite alternate;
+    /* 🚩 15초 동안 부드럽게 무한 왕복 애니메이션으로 변경 */
 }
 
-/* 🚩 새로운 디스코 플래시 애니메이션 키프레임 추가 */
-@keyframes discoFlash {
+/* 🚩 새로운 (또는 복원된) 부드러운 애니메이션 키프레임 추가 */
+@keyframes gradientShift {
     0% {
         background-position: 0% 50%;
-        filter: brightness(1.5);
-        /* 밝기 증가 */
+        /* 시작 위치 */
     }
 
     50% {
         background-position: 100% 50%;
-        filter: brightness(0.8);
-        /* 밝기 감소 */
+        /* 중간 위치 */
     }
 
     100% {
         background-position: 0% 50%;
-        filter: brightness(1.5);
+        /* 시작 위치로 돌아옴 */
     }
 }
+
 
 /* ... (나머지 CSS 코드 유지) ... */
 .game-container {
