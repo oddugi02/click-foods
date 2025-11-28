@@ -5,11 +5,47 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-color: #f4f4f4;
+
+    /* 기본 배경은 검은색 또는 진한 색으로 설정 */
+    background-color: #111;
+    transition: background-color 0.1s;
+    /* JS에서 색상 변경 시 부드러운 전환을 위해 추가 */
+
+    /* 기존 스타일 유지 */
+    overflow: hidden;
 }
 
+/* 🚩 게임 실행 시 body에 동적으로 추가할 클래스 (JS에서 제어) */
+.disco-mode {
+    background: linear-gradient(135deg, #ff0077, #00ffff, #ffcc00, #00ff00);
+    background-size: 400% 400%;
+    animation: discoFlash 0.5s infinite alternate;
+    /* 0.5초 간격으로 빠르게 번쩍임 */
+}
+
+/* 🚩 새로운 디스코 플래시 애니메이션 키프레임 추가 */
+@keyframes discoFlash {
+    0% {
+        background-position: 0% 50%;
+        filter: brightness(1.5);
+        /* 밝기 증가 */
+    }
+
+    50% {
+        background-position: 100% 50%;
+        filter: brightness(0.8);
+        /* 밝기 감소 */
+    }
+
+    100% {
+        background-position: 0% 50%;
+        filter: brightness(1.5);
+    }
+}
+
+/* ... (나머지 CSS 코드 유지) ... */
 .game-container {
-    background: white;
+    background: rgba(255, 255, 255, 0.9);
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);

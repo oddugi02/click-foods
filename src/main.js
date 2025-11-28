@@ -36,7 +36,9 @@ const computerPercentageBar = document.getElementById('computer-percentage-bar')
 const playerPercentageText = document.getElementById('player-percentage');
 const computerPercentageText = document.getElementById('computer-percentage');
 const cheerMessageElement = document.getElementById('cheer-message');
+// ... (기존 DOM 요소) ...
 
+const bodyElement = document.querySelector('body'); // 🚩 body 요소 추가
 // 🚩 수정된 부분 시작: 모달 버튼을 생성 시점에 바로 참조
 const modalContent = document.querySelector('.modal-content');
 
@@ -126,12 +128,19 @@ function toggleGame() {
         startTimerAndAI();
         startCheerMessage();
         updateButtonState('running');
+
+        // 🚩 디스코 모드 ON
+        bodyElement.classList.add('disco-mode');
+
     } else if (isGameRunning) {
         // 일시 정지
         isGameRunning = false;
         stopTimerAndAI();
         stopCheerMessage();
         updateButtonState('paused');
+
+        // 🚩 디스코 모드 OFF
+        bodyElement.classList.remove('disco-mode');
     }
 }
 
@@ -144,7 +153,7 @@ function resetGame() {
 
     stopTimerAndAI();
     stopCheerMessage();
-
+    bodyElement.classList.remove('disco-mode');
     updateStageDisplay();
     updateTimerDisplay();
     updateScoreDisplay();
@@ -399,7 +408,7 @@ function endStage(isFinalGame) {
     stopTimerAndAI();
     stopCheerMessage();
     updateButtonState('paused');
-
+    bodyElement.classList.remove('disco-mode');
     let message = '';
 
     if (playerTiles > computerTiles) {
