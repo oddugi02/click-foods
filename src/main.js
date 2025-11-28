@@ -262,13 +262,25 @@ function updateScoreDisplay() {
     updatePercentageBar();
 }
 
+// $main.js 파일 내 updatePercentageBar 함수
 function updatePercentageBar() {
     const { totalTiles } = getCurrentStage();
 
     if (totalTiles === 0) return;
 
-    const playerPct = (playerTiles / totalTiles) * 100;
-    const computerPct = (computerTiles / totalTiles) * 100;
+    // 🚩 수정: 타일 개수를 DOM에서 직접 계산
+    const claimedTiles = Array.from(gridElement.children);
+    const playerColorClass = getCurrentStage().colorClass;
+
+    // 플레이어 타일 개수: 현재 스테이지 색상 클래스를 가진 타일의 수
+    const actualPlayerTiles = claimedTiles.filter(tile => tile.classList.contains(playerColorClass)).length;
+
+    // 컴퓨터 타일 개수: 'computer-tile' 클래스를 가진 타일의 수
+    const actualComputerTiles = claimedTiles.filter(tile => tile.classList.contains('computer-tile')).length;
+
+    // 퍼센티지 계산
+    const playerPct = (actualPlayerTiles / totalTiles) * 100;
+    const computerPct = (actualComputerTiles / totalTiles) * 100;
 
     playerPercentageBar.style.width = `${playerPct}%`;
     computerPercentageBar.style.width = `${computerPct}%`;
@@ -277,10 +289,11 @@ function updatePercentageBar() {
     computerPercentageText.textContent = `${Math.round(computerPct)}%`;
 }
 
-// 🚩 핵심 수정: handleTileClick 함수를 올바르게 정의하고 닫습니다.
+// $main.js 파일 내 handleTileClick 함수
 function handleTileClick(tile, byWhom) {
     if (!isGameRunning) return;
 
+    const SCORE_PER_TILE = 50; // 🚩 점수 상수 정의
     const playerColorClass = getCurrentStage().colorClass;
     const isPlayer = (byWhom === 'player');
 
@@ -293,31 +306,40 @@ function handleTileClick(tile, byWhom) {
 
     if (isPlayer) {
         if (wasComputerTile) {
+            // 컴퓨터 타일 탈환: 컴퓨터 점수 차감
             tile.classList.remove('computer-tile');
-            computerTiles--;
+            computerTiles -= SCORE_PER_TILE;
         }
 
-        // 이 타일이 플레이어의 것이 아니었다면 점수 증가
         if (!wasPlayerTile) {
-            playerTiles++;
+            // 빈 타일 획득 또는 컴퓨터 타일 탈환: 플레이어 점수 증가
+            playerTiles += SCORE_PER_TILE;
+
+        } else {
+            // 이미 플레이어 타일이었으면 점수 변화 없음 (중복 클릭)
         }
 
-        // 현재 스테이지 색상 클래스 적용 (획득)
+        // 타일 색상 적용
         tile.classList.add(playerColorClass);
 
     } else { // 컴퓨터가 클릭한 경우
         if (wasPlayerTile) {
-            playerTiles--;
+            // 플레이어 타일 탈환: 플레이어 점수 차감
+            playerTiles -= SCORE_PER_TILE;
         }
 
         if (!wasComputerTile) {
-            tile.classList.add('computer-tile');
-            computerTiles++;
+            // 빈 타일 획득 또는 플레이어 타일 탈환: 컴퓨터 점수 증가
+            computerTiles += SCORE_PER_TILE;
         }
-    }
-    updateScoreDisplay();
-} // 🚩 handleTileClick 함수가 여기서 정상적으로 닫힙니다.
 
+        // 타일 색상 적용
+        tile.classList.add('computer-tile');
+    }
+
+    // 점수와 퍼센티지 업데이트를 위해 호출
+    updateScoreDisplay();
+}
 
 // 🚩 이제부터는 전역 함수들입니다.
 
@@ -343,7 +365,7 @@ function setComputerSpeed() {
 
     // 🚩 고정 딜레이 설정 (기존 로직의 초기 속도에 가까운 값으로 설정)
     // 예시: 500ms (0.5초)마다 클릭 (원하는 속도에 따라 이 값을 조절할 수 있습니다.)
-    const FIXED_DELAY = 400
+    const FIXED_DELAY = 360
         ;
 
     computerIntervalId = setInterval(computerTurn, FIXED_DELAY);
