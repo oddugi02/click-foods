@@ -121,13 +121,26 @@ body {
     padding: 2px;
 }
 
+/* style.css 파일 내 .tile 스타일 */
 .tile {
     aspect-ratio: 1 / 1;
     background-color: #eee;
-    border: 1px solid #ccc;
+    border: 1px solid #777;
     cursor: pointer;
-    transition: background-color 0.2s;
+    /* 🚩 타일 색상 전환에 트랜지션을 적용하여 부드럽게 합니다. */
+    transition: background-color 0.1s ease;
 }
+
+/* 🚩 NEW: 타일을 클릭하는 순간 (mousedown)의 회색 피드백 효과 */
+.tile:active {
+    background-color: #999 !important;
+    /* 클릭 순간 잠시 어두운 회색으로 만듭니다. */
+    transform: scale(0.95);
+    /* 클릭 시 살짝 작아지는 효과를 추가해 반응성을 높입니다. */
+    transition: transform 0.05s ease;
+}
+
+/* ... (나머지 단계별 플레이어/컴퓨터 타일 색상 CSS는 그대로 유지) ... */
 
 /* 🚩 NEW: 단계별 플레이어 타일 색상 (10개 스테이지) */
 .player-tile-stage1 {
